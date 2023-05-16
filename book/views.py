@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import render
 from book.models import Book, Author
-
+from .serializers import AuthorSerializer
 
 # Create your views here.
 
