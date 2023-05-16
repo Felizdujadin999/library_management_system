@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Book</title>
+</head>
+<body>
+<h1>LIST OF AUTHORS IN LIBRARY</h1>
+{% block content %}
+    {% for author in authors %}
+    <ul>
+    <h3>{{ author.first_name }} {{ author.last_name }} => <span>{{ author.email }}</span></h3>
+    </ul>
+    {% endfor %}
+{% endblock %}
+</body>
+<style>
+    span{
+        color: green;
+    }
+</style>
+</html>
