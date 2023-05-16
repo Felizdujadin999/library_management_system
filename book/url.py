@@ -4,5 +4,6 @@ from book import views
 
 urlpatterns = [
     path("authors/", views.list_authors, name='home'),
-    path("welcome/", views.welcome)
+    path("welcome/", views.welcome),
+    path("authors/<int:pk>/", views.author_detail)
 ]
