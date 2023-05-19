@@ -30,7 +30,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=15, choices=GENRE_CHOICES)
     language = models.CharField(max_length=15, choices=LANGUAGE_CHOICES)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    author = models.ForeignKey('Author', on_delete=models.PROTECT, blank=False, null=False)
+    author = models.ForeignKey('Author', on_delete=models.PROTECT, blank=False, null=False, related_name='book_author')
 
     def __str__(self):
         return f"""

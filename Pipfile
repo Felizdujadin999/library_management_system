@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 mysqlclient = "*"
 serializer = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 
