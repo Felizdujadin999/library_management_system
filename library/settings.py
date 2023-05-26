@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'book.apps.BookConfig',
     'rest_framework',
     "debug_toolbar",
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,10 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING': False,
+
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 10
+}

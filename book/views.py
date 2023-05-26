@@ -5,9 +5,12 @@ from rest_framework import status
 from django.shortcuts import render, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from django_filters.rest_framework import DjangoFilterBackend
 
 from book.models import Book, Author
 from .serializers import AuthorSerializer, BookSerializer
+from .pagination import DefaultPagination
+from .filters import AuthorFilter, BookFilter
 
 
 # Create your views here.
@@ -15,25 +18,36 @@ from .serializers import AuthorSerializer, BookSerializer
 class AuthorListViewSet(ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    pagination_class = DefaultPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = AuthorFilter
 
 
-class AuthorList(ListCreateAPIView):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
-
-
-class BookList(ListCreateAPIView):
+class BookListViewSet(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    pagination_class = DefaultPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = BookFilter
 
-    def get_serializer_context(self):
-        return {'request': self.request}
 
-    # def get_queryset(self):
-    #     return Author.objects.all()
-    #
-    # def get_serializer_class(self):
-    #     return AuthorSerializer
+# class AuthorList(ListCreateAPIView):
+#     queryset = Author.objects.all()
+#     serializer_class = AuthorSerializer
+
+
+# class BookList(ListCreateAPIView):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer
+#
+#     def get_serializer_context(self):
+#         return {'request': self.request}
+
+# def get_queryset(self):
+#     return Author.objects.all()
+#
+# def get_serializer_class(self):
+#     return AuthorSerializer
 
 
 # class AuthorView(APIView):
@@ -49,14 +63,14 @@ class BookList(ListCreateAPIView):
 #         return Response("Successful", status=status.HTTP_201_CREATED)
 
 
-class AuthorDetail(RetrieveUpdateDestroyAPIView):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
+# class AuthorDetail(RetrieveUpdateDestroyAPIView):
+#     queryset = Author.objects.all()
+#     serializer_class = AuthorSerializer
 
 
-class BookDetail(RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
+# class BookDetail(RetrieveUpdateDestroyAPIView):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer
 
 
 # class AuthorDetailView(APIView):
