@@ -22,6 +22,8 @@ admin.site.site_header = "Library Management System"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
     path('book/', include('book.url')),
     path('demo/', include('demo.urls'))
 ]

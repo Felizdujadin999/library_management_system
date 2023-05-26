@@ -5,6 +5,7 @@ from rest_framework import status
 from django.shortcuts import render, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 from book.models import Book, Author
@@ -19,16 +20,18 @@ class AuthorListViewSet(ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     pagination_class = DefaultPagination
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = AuthorFilter
+    search_fields = ['first_name', 'last_name']
 
 
 class BookListViewSet(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     pagination_class = DefaultPagination
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = BookFilter
+    search_fields = ['title']
 
 
 # class AuthorList(ListCreateAPIView):

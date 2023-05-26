@@ -2,6 +2,7 @@ from decimal import Decimal
 
 from rest_framework import serializers
 from .models import Author, Book
+from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -27,3 +28,8 @@ class BookSerializer(serializers.ModelSerializer):
         return book.price * Decimal(0.1)
 
     # author = serializers.ForeignKey('Author', blank=False, null=False)
+
+
+class UserCreateSerializer(BaseUserCreateSerializer):
+    class Meta(BaseUserCreateSerializer.Meta):
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password']
